@@ -1,0 +1,538 @@
+<div class="home">
+    <div class="top">
+        <div class="top-top">
+            <div class="title">
+                Navigate the skies with ease
+            </div>
+        </div>
+        <div class="top-bottom">
+            
+        </div>
+        <div class="form">
+            <div class="form-top">
+                <div class="select-way" [class.select-way-selected]="waySelected" (click)="toggleWaySelection()" appClickOutside (clickOutside)="closeWaySelection()">
+                    <img  class="way-image" *ngIf="way == 'One way'" src="../../../../assets/arrow-right-346-svgrepo-com.svg"/>
+                    <img  class="way-image" *ngIf="way == 'Return'" src="../../../../assets/arrow-right-left-342-svgrepo-com.svg"/>
+                    <div class="way">{{way}}</div>
+                    <img  class="way-arrow" [class.way-arrow-selected]="waySelected" src="../../../../assets/triangle-down-svgrepo-com.svg"/>
+                    <div class="way-options" *ngIf="waySelected">
+                        <div class="way-option" [class.way-option-selected]="way == 'One way'" (click)="selectWay('One way')">
+                            <img class="way-option-image" [class.way-option-image-selected]="way != 'One way'" src="../../../../assets/check-svgrepo-com.svg"/>
+                            <div class="way-option-text">One way</div>
+                        </div>
+                        <div class="way-option" [class.way-option-selected]="way == 'Return'" (click)="selectWay('Return')">
+                            <img class="way-option-image" [class.way-option-image-selected]="way != 'Return'" src="../../../../assets/check-svgrepo-com.svg"/>
+                            <div class="way-option-text">Return</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="select-stops" [class.select-stops-selected]="stopsSelected" (click)="toggleStopsSelection()" appClickOutside (clickOutside)="closeStopsSelection()">
+                    <img  class="stops-image" *ngIf="stops == 'Direct'" src="../../../../assets/arrow-right-346-svgrepo-com.svg"/>
+                    <img  class="stops-image" *ngIf="stops == 'With stops'" src="../../../../assets/reload-svgrepo-com.svg"/>
+                    <div class="stops">{{stops}}</div>
+                    <img  class="stops-arrow" [class.stops-arrow-selected]="stopsSelected" src="../../../../assets/triangle-down-svgrepo-com.svg"/>
+                    <div class="stops-options" *ngIf="stopsSelected">
+                        <div class="stops-option" [class.stops-option-selected]="stops == 'Direct'" (click)="selectStops('Direct')">
+                            <img class="stops-option-image" [class.stops-option-image-selected]="stops != 'Direct'" src="../../../../assets/check-svgrepo-com.svg"/>
+                            <div class="stops-option-text">Direct</div>
+                        </div>
+                        <div class="stops-option" [class.stops-option-selected]="stops == 'With stops'" (click)="selectStops('With stops')">
+                            <img class="stops-option-image" [class.stops-option-image-selected]="stops != 'With stops'" src="../../../../assets/check-svgrepo-com.svg"/>
+                            <div class="stops-option-text">With stops</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="select-passengers" [class.select-passengers-selected]="passengersSelected" (click)="openPassengersSelection()" appClickOutside (clickOutside)="closePassengersSelection()">
+                    <img  class="passengers-image" src="../../../../assets/person-male-svgrepo-com.svg">
+                    <div class="passengers">{{adultPassengerCount + childrenPassengerCount}}</div>
+                    <img  class="passengers-arrow" [class.passengers-arrow-selected]="passengersSelected" src="../../../../assets/triangle-down-svgrepo-com.svg"/>
+                    <div class="passengers-options" *ngIf="passengersSelected">
+                        <div class="passengers-option">
+                            <div class="passengers-option-text">Adults</div>
+                            <div class="passengers-minus" (click)="removeAdultPassenger()">
+                                <img class="passengers-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                            </div>
+                            <div class="passengers-option-count">{{adultPassengerCount}}</div>
+                            <div class="passengers-plus" (click)="addAdultPassenger()">
+                                <img class="passengers-plus-image" src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                            </div>
+                        </div>
+                        <div class="passengers-option">
+                            <div class="passengers-option-text">Children</div>
+                            <div class="passengers-minus" (click)="removeChildPassenger()">
+                                <img class="passengers-minus-image"src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                            </div>
+                            <div class="passengers-option-count">{{childrenPassengerCount}}</div>
+                            <div class="passengers-plus" (click)="addChildPassenger()">
+                                <img class="passengers-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="select-class" [class.select-class-selected]="classSelected" (click)="toggleClassSelection()" appClickOutside (clickOutside)="closeClassSelection()">
+                    <img  class="class-image" src="../../../../assets/coin-2-svgrepo-com.svg"/>
+                    <img  class="class-image class-image-margin" *ngIf="flightClass != 'Economy'" src="../../../../assets/coin-2-svgrepo-com.svg"/>
+                    <img  class="class-image class-image-margin" *ngIf="flightClass == 'First'" src="../../../../assets/coin-2-svgrepo-com.svg"/>
+                    <div class="class">{{flightClass}}</div>
+                    <img  class="class-arrow" [class.class-arrow-selected]="classSelected" src="../../../../assets/triangle-down-svgrepo-com.svg"/>
+                    <div class="class-options" *ngIf="classSelected">
+                        <div class="class-option" [class.class-option-selected]="flightClass == 'Economy'" (click)="selectClass('Economy')">
+                            <img class="class-option-image" [class.class-option-image-selected]="flightClass != 'Economy'" src="../../../../assets/check-svgrepo-com.svg"/>
+                            <div class="class-option-text">Economy</div>
+                        </div>
+                        <div class="class-option" [class.class-option-selected]="flightClass == 'Business'" (click)="selectClass('Business')">
+                            <img class="class-option-image" [class.class-option-image-selected]="flightClass != 'Business'" src="../../../../assets/check-svgrepo-com.svg"/>
+                            <div class="class-option-text">Business</div>
+                        </div>
+                        <div class="class-option" [class.class-option-selected]="flightClass == 'First'" (click)="selectClass('First')">
+                            <img class="class-option-image" [class.class-option-image-selected]="flightClass != 'First'" src="../../../../assets/check-svgrepo-com.svg"/>
+                            <div class="class-option-text">First</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="select-currency" [class.select-currency-selected]="currencySelected" (click)="toggleCurrencySelection()" appClickOutside (clickOutside)="closeCurrencySelection()">
+                    <img  class="currency-image" src="../../../../assets/dollar-svgrepo-com.svg"/>
+                    <div class="currency">{{currency}}</div>
+                    <img  class="currency-arrow" [class.currency-arrow-selected]="currencySelected" src="../../../../assets/triangle-down-svgrepo-com.svg"/>
+                    <div class="currency-options" *ngIf="currencySelected">
+                        <div class="currency-option" [class.currency-option-selected]="currency == currencyOption" (click)="selectCurrency(currencyOption)" *ngFor="let currencyOption of currencyArray">
+                            <img class="currency-option-image" [class.currency-option-image-selected]="currency != currencyOption" src="../../../../assets/check-svgrepo-com.svg"/>
+                            <div class="currency-option-text">{{currencyOption}}</div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-bottom">
+                <div class="select-relation">
+                    <div class="from" (click)="openFromSelection()" appClickOutside (clickOutside)="closeFromSelection()">
+                        <img class="from-image" src="../../../../assets/circle-svgrepo-com.svg"/>
+                        <div class="from-text">{{fromDisplay}}</div>
+                        <div class="from-circle"></div>
+                        <div class="select-from" *ngIf="fromSelected">
+                            <div class="select-from-top">
+                                <img class="from-image" src="../../../../assets/circle-svgrepo-com.svg"/>
+                                <input class="from-search" type="text" [(ngModel)]="fromSearch" placeholder="Where from?" (ngModelChange)="searchFromAirports()"/>
+                            </div>
+                            <div class="search-bottom">
+                                <div class="airport" *ngFor="let airport of fromAirports" (click)="selectFromAirport(airport)">
+                                    <img class="airport-image" src="../../../../assets/airplane-svgrepo-com.svg"/>
+                                    <div class="airport-information">
+                                        <div class="airport-name">
+                                            {{airport.name}}
+                                        </div>
+                                        <div class="airport-iata">
+                                            {{airport.iata}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="no-airports" *ngIf="fromAirports.length == 0">
+                                    <div class="no-airports-text">
+                                        No matching locations found
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="to" (click)="openToSelection()" appClickOutside (clickOutside)="closeToSelection()">
+                        <img class="to-image" src="../../../../assets/location-pin-svgrepo-com.svg"/>
+                        <div class="to-text">{{toDisplay}}</div>
+                        <div class="to-circle"></div>
+                        <div class="select-to" *ngIf="toSelected">
+                            <div class="select-to-top">
+                                <img class="to-image" src="../../../../assets/location-pin-svgrepo-com.svg"/>
+                                <input class="to-search" type="text" [(ngModel)]="toSearch" placeholder="Where to?" (ngModelChange)="searchToAirports()"/>
+                            </div>
+                            <div class="search-bottom">
+                                <div class="airport" *ngFor="let airport of toAirports" (click)="selectToAirport(airport)">
+                                    <img class="airport-image" src="../../../../assets/airplane-svgrepo-com.svg"/>
+                                    <div class="airport-information">
+                                        <div class="airport-name">
+                                            {{airport.name}}
+                                        </div>
+                                        <div class="airport-iata">
+                                            {{airport.iata}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="no-airports"  *ngIf="toAirports.length == 0">
+                                    <div class="no-airports-text">
+                                        No matching locations found
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="from-to-stripe"></div>
+                    <div class="from-to-switch" (click)="switchAirports()">
+                        <img class="from-to-switch-image" [class.from-to-switch-image-selected]="relationSwitched" src="../../../../assets/arrow-right-left-342-svgrepo-com.svg"/>
+                    </div>
+                </div>
+                <div class="select-dates">
+                    <div class="date" (click)="openDepartureSelection()" appClickOutside (clickOutside)="closeDepartureSelection()" *ngIf="way == 'One way'">
+                        <img class="date-image" src="../../../../assets/calendar-svgrepo-com.svg"/>
+                        <div class="date-text">
+                            <div class="day-of-week">
+                                {{convertDateFormat(departure, 'EE')}},
+                            </div>
+                            <div class="day">
+                                &nbsp;{{convertDateFormat(departure, 'dd.')}}
+                            </div>
+                            <div class="month">
+                                {{convertDateFormat(departure, 'MM.')}}
+                            </div>
+                            <div class="year">
+                                {{convertDateFormat(departure, 'yyyy.')}}
+                            </div>
+                        </div>
+                        <div class="select-date" *ngIf="departureSelected">
+                            <div class="select-date-top">
+                                <img class="date-image" src="../../../../assets/calendar-svgrepo-com.svg"/>
+                                <div class="date-text">
+                                    Departure
+                                </div>
+                            </div>
+                            <div class="date-bottom">
+                                <div class="date-option">
+                                    <div class="date-option-text">Day</div>
+                                    <div class="date-minus" (click)="removeTimeFromDeparture(departure, 'day')">
+                                        <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                    </div>
+                                    <div class="date-option-count">
+                                        {{convertDateFormat(departure, 'dd.')}}
+                                    </div>
+                                    <div class="date-plus" (click)="addTimeToDeparture(departure, 'day')">
+                                        <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                    </div>
+                                </div>
+                                <div class="date-option">
+                                    <div class="date-option-text">Month</div>
+                                    <div class="date-minus" (click)="removeTimeFromDeparture(departure, 'month')">
+                                        <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                    </div>
+                                    <div class="date-option-count">
+                                        {{convertDateFormat(departure, 'MM.')}}
+                                    </div>
+                                    <div class="date-plus" (click)="addTimeToDeparture(departure, 'month')">
+                                        <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                    </div>
+                                </div>
+                                <div class="date-option">
+                                    <div class="date-option-text">Year</div>
+                                    <div class="date-minus" (click)="removeTimeFromDeparture(departure, 'year')">
+                                        <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                    </div>
+                                    <div class="date-option-count">
+                                        {{convertDateFormat(departure, 'yyyy.')}}
+                                    </div>
+                                    <div class="date-plus" (click)="addTimeToDeparture(departure, 'year')">
+                                        <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="date-return-1" (click)="openDepartureSelection()" appClickOutside (clickOutside)="closeDepartureSelection()" *ngIf="way == 'Return'" (mouseover)="hideSeparator(true)" (mouseout)="hideSeparator(false)">
+                        <img class="date-image" src="../../../../assets/calendar-svgrepo-com.svg"/>
+                        <div class="date-text">
+                            <div class="day-of-week">
+                                {{convertDateFormat(departure, 'EE')}},
+                            </div>
+                            <div class="day">
+                                &nbsp;{{convertDateFormat(departure, 'dd.')}}
+                            </div>
+                            <div class="month">
+                                {{convertDateFormat(departure, 'MM.')}}
+                            </div>
+                            <div class="year">
+                                {{convertDateFormat(departure, 'yyyy.')}}
+                            </div>
+                        </div>
+                        <div class="select-date" *ngIf="departureSelected">
+                            <div class="select-date-top">
+                                <img class="date-image" src="../../../../assets/calendar-svgrepo-com.svg"/>
+                                <div class="date-text">
+                                    Departure
+                                </div>
+                            </div>
+                            <div class="date-bottom">
+                                <div class="date-option">
+                                    <div class="date-option-text">Day</div>
+                                    <div class="date-minus" (click)="removeTimeFromDeparture(departure, 'day')">
+                                        <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                    </div>
+                                    <div class="date-option-count">
+                                        {{convertDateFormat(departure, 'dd.')}}
+                                    </div>
+                                    <div class="date-plus" (click)="addTimeToDeparture(departure, 'day')">
+                                        <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                    </div>
+                                </div>
+                                <div class="date-option">
+                                    <div class="date-option-text">Month</div>
+                                    <div class="date-minus" (click)="removeTimeFromDeparture(departure, 'month')">
+                                        <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                    </div>
+                                    <div class="date-option-count">
+                                        {{convertDateFormat(departure, 'MM.')}}
+                                    </div>
+                                    <div class="date-plus" (click)="addTimeToDeparture(departure, 'month')">
+                                        <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                    </div>
+                                </div>
+                                <div class="date-option">
+                                    <div class="date-option-text">Year</div>
+                                    <div class="date-minus" (click)="removeTimeFromDeparture(departure, 'year')">
+                                        <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                    </div>
+                                    <div class="date-option-count">
+                                        {{convertDateFormat(departure, 'yyyy.')}}
+                                    </div>
+                                    <div class="date-plus" (click)="addTimeToDeparture(departure, 'year')">
+                                        <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="date-return-2" (click)="openReturnSelection()" appClickOutside (clickOutside)="closeReturnSelection()" *ngIf="way == 'Return'" (mouseover)="hideSeparator(true)" (mouseout)="hideSeparator(false)">
+                        <img class="date-image" src="../../../../assets/calendar-svgrepo-com.svg"/>
+                        <div class="date-text">
+                            <div class="day-of-week">
+                                {{convertDateFormat(return, 'EE')}},
+                            </div>
+                            <div class="day">
+                                &nbsp;{{convertDateFormat(return, 'dd.')}}
+                            </div>
+                            <div class="month">
+                                {{convertDateFormat(return, 'MM.')}}
+                            </div>
+                            <div class="year">
+                                {{convertDateFormat(return, 'yyyy.')}}
+                            </div>
+                        </div>
+                        <div class="select-date" *ngIf="returnSelected">
+                            <div class="select-date-top">
+                                <img class="date-image" src="../../../../assets/calendar-svgrepo-com.svg"/>
+                                <div class="date-text">
+                                    Return
+                                </div>
+                            </div>
+                            <div class="date-bottom">
+                                <div class="date-option">
+                                    <div class="date-option-text">Day</div>
+                                    <div class="date-minus" (click)="removeTimeFromReturn(return, 'day')">
+                                        <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                    </div>
+                                    <div class="date-option-count">
+                                        {{convertDateFormat(return, 'dd.')}}
+                                    </div>
+                                    <div class="date-plus" (click)="addTimeToReturn(return, 'day')">
+                                        <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                    </div>
+                                </div>
+                                <div class="date-option">
+                                    <div class="date-option-text">Month</div>
+                                    <div class="date-minus" (click)="removeTimeFromReturn(return, 'month')">
+                                        <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                    </div>
+                                    <div class="date-option-count">
+                                        {{convertDateFormat(return, 'MM.')}}
+                                    </div>
+                                    <div class="date-plus" (click)="addTimeToReturn(return, 'month')">
+                                        <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                    </div>
+                                </div>
+                                <div class="date-option">
+                                    <div class="date-option-text">Year</div>
+                                    <div class="date-minus" (click)="removeTimeFromReturn(return, 'year')">
+                                        <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                    </div>
+                                    <div class="date-option-count">
+                                        {{convertDateFormat(return, 'yyyy.')}}
+                                    </div>
+                                    <div class="date-plus" (click)="addTimeToReturn(return, 'year')">
+                                        <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="date-separator" [class.date-separator-hidden]="separatorHidden" *ngIf="way == 'Return'"></div>
+                </div>
+            </div>
+            <div class="search-button" (click)="search()">
+                <img class="search-button-image" src="../../../../assets/search-svgrepo-com.svg"/>
+                <div class="search-button-text">
+                    Search
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="image-section">
+            <img class="image-section-image" src="../../../../assets/pexels-pixabay-355508.jpg"/>
+            <div class="image-section-text">
+                Fly further, fly smarter
+            </div>
+        </div>
+        <div class="questions-section">
+            <div class="questions-title">
+                Finding and booking flights with PathfindAir
+            </div>
+            <div class="question-splitter">
+                <div class="question-split">
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(1)">
+                            <div class="question-title">
+                                How does PathfindAir work?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(1)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(1)">
+                            <div class="question-answer-text">
+                                Discover the ultimate travel companion with our app, designed to make your flight search and booking process seamless and stress-free. Our powerful search engine scans all the leading airlines and travel providers across the web, allowing you to effortlessly compare flight fares and find the best deals. With a few taps, you can explore a wide range of options, select your ideal flight, and book directly with the provider. Whether you're planning a business trip, a family vacation, or a spontaneous getaway, our app ensures you get the best rates and the most convenient flight options, all in one place. Start your journey with ease and confidence, knowing you have the best travel resources at your fingertips.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(2)">
+                            <div class="question-title">
+                                How can I find the cheapest flight using PathfindAir?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(2)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(2)">
+                            <div class="question-answer-text">
+                                Discovering flights has never been easier. Travelers visit us every month to find affordable flight tickets. Maximize savings and convenience. Whether you're looking for the quickest flight or the best hotel stay, you can choose your preferred flight provider and book instantly.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(3)">
+                            <div class="question-title">
+                                Where should I book a flight to right now?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(3)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(3)">
+                            <div class="question-answer-text">
+                                With our extensive selection of destinations from all around the world, the possibilities are endless. Choose from a vast array of airports and find your perfect getaway, whether you're seeking adventure, relaxation, or something in between. Start exploring today and discover where your next journey will take you!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(4)">
+                            <div class="question-title">
+                                Can I book a flight with PathfindAir?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(4)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(4)">
+                            <div class="question-answer-text">
+                                Absolutely! Our platform brings everything you need into one convenient place, making flight booking seamless and straightforward. Start planning your trip with PathfindAir today!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(5)">
+                            <div class="question-title">
+                                What happens when I book my flight?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(5)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(5)">
+                            <div class="question-answer-text">
+                                When you book your flight with us, you provide your contact information during the booking process. Shortly after, the airline will contact you directly to confirm your booking and provide with tickets. We ensure a smooth process from booking to takeoff, so you can travel with peace of mind.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-split">
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(6)">
+                            <div class="question-title">
+                                Can I book a return ticket?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(6)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(6)">
+                            <div class="question-answer-text">
+                                Yes, you can easily book a return ticket through our platform. Choose your departure and return dates, and find the best fares for your round-trip journey.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(7)">
+                            <div class="question-title">
+                                What if I don't find a direct flight to my detination?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(7)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(7)">
+                            <div class="question-answer-text">
+                                No worries! You can still find convenient options with connecting flights. Our platform allows you to compare routes and prices, so you can choose the best option that suits your travel needs.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(8)">
+                            <div class="question-title">
+                                Can I book tickets for my children?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(8)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(8)">
+                            <div class="question-answer-text">
+                                Absolutely! You can easily book tickets for your children through our platform. Simply select the number of child passengers during your flight search, and find the best fares and options for your family travel.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(9)">
+                            <div class="question-title">
+                                Is it possible to change the currency for my bookings?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(9)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(9)">
+                            <div class="question-answer-text">
+                                At PathfindAir, flexibility is key. You have the option to switch currencies when booking your flights, ensuring you can view and pay in the currency that suits you best. Whether you're planning an international adventure or a domestic trip, we make it easy to manage your bookings in your preferred currency, providing transparency and convenience throughout your travel planning experience.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-header" (click)="toggleQuestionExpansion(10)">
+                            <div class="question-title">
+                                Is there a fee for using PathfindAir?
+                            </div>
+                            <img class="question-chevron" [class.question-chevron-expanded]="isQuestionExpanded(10)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                        </div>
+                        <div class="question-answer" [class.question-answer-expanded]="isQuestionExpanded(10)">
+                            <div class="question-answer-text">
+                                There are no fees for using PathfindAir to search and book flights. Our platform allows you to compare prices across multiple airlines and travel providers without any additional charges. You can explore various options and find the best deals suited to your travel needs. Booking directly through PathfindAir ensures transparency in pricing, and you only pay for the services you choose to book. Enjoy hassle-free travel planning with Pathfinder, where finding and booking your next adventure is straightforward and cost-effective.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+

@@ -1,0 +1,1334 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 28rem;
+    position: relative;
+}
+
+.top-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 23rem;
+    background-color: rgba(50, 50, 50, 1);
+
+}
+
+.title {
+    margin-top: 10rem;
+    font-family: Roboto;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+}
+
+.top-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 10rem;
+    width: 70rem;
+    position: absolute;
+    top: 17rem;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 0.5rem;
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.form-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: calc(100% - 2rem);
+}
+
+.select-way {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.select-way:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.select-way-selected {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.select-way-selected:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.way-image {
+    margin-left: 0.5rem;
+    height: 1rem;
+}
+
+.way {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.way-arrow {
+    margin-left: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.way-arrow-selected {
+    transform: rotate(180deg);
+}
+
+.way-options {
+    z-index: 1000;
+    padding-block: 0.25rem;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 10rem;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.way-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+}
+
+.way-option:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.way-option-selected {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.way-option-selected:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.way-option-image {
+    margin-left: 0.5rem;
+    height: 1.25rem;
+}
+
+.way-option-image-selected {
+    visibility: hidden;
+}
+
+.way-option-text {
+    margin-right: 0.5rem;
+    margin-left: auto;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.select-stops {
+    margin-left: 0.25rem;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.select-stops:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.select-stops-selected {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.select-stops-selected:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.stops-image {
+    margin-left: 0.5rem;
+    height: 1rem;
+}
+
+.stops {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.stops-arrow {
+    margin-left: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.stops-arrow-selected {
+    transform: rotate(180deg);
+}
+
+.stops-options {
+    z-index: 1000;
+    padding-block: 0.25rem;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 10rem;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.stops-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+}
+
+.stops-option:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.stops-option-selected {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.stops-option-selected:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.stops-option-image {
+    margin-left: 0.5rem;
+    height: 1.25rem;
+}
+
+.stops-option-image-selected {
+    visibility: hidden;
+}
+
+.stops-option-text {
+    margin-right: 0.5rem;
+    margin-left: auto;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.select-class {
+    margin-left: 0.25rem;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.select-class:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.select-class-selected {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.select-class-selected:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.class-image {
+    margin-left: 0.5rem;
+    height: 1rem;
+}
+
+.class-image-margin {
+    margin-left: -0.25rem;
+}
+
+.class {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.class-arrow {
+    margin-left: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.class-arrow-selected {
+    transform: rotate(180deg);
+}
+
+.class-options {
+    z-index: 1000;
+    padding-block: 0.25rem;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 10rem;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.class-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+}
+
+.class-option:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.class-option-selected {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.class-option-selected:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.class-option-image {
+    margin-left: 0.5rem;
+    height: 1.25rem;
+}
+
+.class-option-image-selected {
+    visibility: hidden;
+}
+
+.class-option-text {
+    margin-right: 0.5rem;
+    margin-left: auto;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+.select-currency {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.select-currency:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.select-currency-selected {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.select-currency-selected:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.currency-image {
+    margin-left: 0.5rem;
+    height: 1rem;
+}
+
+.currency-image-margin {
+    margin-left: -0.25rem;
+}
+
+.currency {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.currency-arrow {
+    margin-left: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.currency-arrow-selected {
+    transform: rotate(180deg);
+}
+
+.currency-options {
+    z-index: 1000;
+    padding-block: 0.25rem;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 10rem;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+    max-height: 10rem;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(50, 50, 50, 1) rgba(240, 240, 240, 0.4);
+}
+
+.currency-options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.currency-options::-webkit-scrollbar-track {
+    background: rgba(240, 240, 240, 0.4);
+}
+
+.currency-options::-webkit-scrollbar-thumb {
+    background-color: rgba(50, 50, 50, 1);
+    border-radius: 4px;
+}
+
+.currency-options::-webkit-scrollbar-button {
+    display: none;
+    height: 0;
+    width: 0;
+}
+
+.currency-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+}
+
+.currency-option:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.currency-option-selected {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.currency-option-selected:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.currency-option-image {
+    margin-left: 0.5rem;
+    height: 1.25rem;
+}
+
+.currency-option-image-selected {
+    visibility: hidden;
+}
+
+.currency-option-text {
+    margin-right: 0.5rem;
+    margin-left: auto;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.select-passengers {
+    margin-left: 0.25rem;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.select-passengers:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.select-passengers-selected {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.select-passengers-selected:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.passengers-image {
+    margin-left: 0.5rem;
+    height: 1rem;
+}
+
+.passengers-image-margin {
+    margin-left: -0.25rem;
+}
+
+.passengers {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.passengers-arrow {
+    margin-left: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.passengers-arrow-selected {
+    transform: rotate(180deg);
+}
+
+.passengers-options {
+    z-index: 1000;
+    padding-block: 0.25rem;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 15rem;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+.passengers-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+}
+
+.passengers-option-text {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.passengers-minus {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(240, 240, 240, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+}
+
+.passengers-minus:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.passengers-minus-image {
+    height: 1rem;
+}
+
+.passengers-plus-image {
+    height: 1rem;
+}
+
+.passengers-option-count {
+    margin-left: 1rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.passengers-plus {
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(240, 240, 240, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+}
+
+.passengers-plus:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.passengers-plus-image {
+    height: 1rem;
+}
+
+.passengers-plus-image {
+    height: 1rem;
+}
+
+.form-bottom {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: calc(100% - 2rem);
+}
+
+.select-relation {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.from {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    width: 20rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-radius: 0.25rem;
+    position: relative;
+    cursor: pointer;
+    transition: border 0.15s;
+}
+
+.from:hover {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.from:hover .from-circle {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.from-image {
+    margin-left: 1rem;
+    height: 1rem;
+}
+
+.from-text {
+    margin-left: 2rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.from-circle {
+    z-index: 10;
+    position: absolute;
+    right: -1.25rem;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 1rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    transition: border 0.15s;
+}
+
+.select-from {
+    z-index: 200;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25rem;
+    background-color: rgba(255, 255, 255, 1);
+    border: rgba(255, 255, 255, 1) 1px solid;
+    border-radius: 0.25rem;
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+.select-from-top {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    border-bottom: rgba(220, 220, 220, 1) 1px solid;
+}
+
+.from-search {
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    border: none;
+    outline: none;
+}
+
+.search-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-height: 20rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(50, 50, 50, 1) rgba(240, 240, 240, 0.4);
+}
+
+.search-bottom::-webkit-scrollbar {
+    width: 8px;
+}
+
+.search-bottom::-webkit-scrollbar-track {
+    background: rgba(240, 240, 240, 0.4);
+}
+
+.search-bottom::-webkit-scrollbar-thumb {
+    background-color: rgba(50, 50, 50, 1);
+    border-radius: 4px;
+}
+
+.search-bottom::-webkit-scrollbar-button {
+    display: none;
+    height: 0;
+   width: 0;
+}
+
+.airport {
+    padding-block: 0.5rem;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    width: 100%;
+    transition: background-color 0.15s;
+    cursor: pointer;
+}
+
+.airport:hover {
+    background-color: rgba(240, 240, 240, 0.4);
+}
+
+.airport:active {
+    background-color: rgba(220, 220, 220, 0.4);
+}
+
+.airport-image {
+    margin-left: 1rem;
+    height: 2rem;
+}
+
+.airport-information {
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.airport-name {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.airport-iata {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(220, 220, 220, 1);
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.no-airports {
+    padding-block: 0.5rem;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    width: 100%;
+}
+
+.no-airports-text {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(220, 220, 220, 1);
+    margin-left: 1rem;
+}
+
+.to {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+    height: 3rem;
+    width: 20rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-radius: 0.25rem;
+    position: relative;
+    cursor: pointer;
+    transition: border 0.15s;
+}
+
+.to:hover {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.to:hover .to-circle {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.to-image {
+    margin-left: 1.5rem;
+    height: 1rem;
+}
+
+.to-text {
+    margin-left: 2rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.to-circle {
+    z-index: 10;
+    position: absolute;
+    left: -1.25rem;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 1rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    transition: border 0.15s;
+}
+
+.select-to {
+    z-index: 200;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25rem;
+    background-color: rgba(255, 255, 255, 1);
+    border: rgba(255, 255, 255, 1) 1px solid;
+    border-radius: 0.25rem;
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+.select-to-top {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    border-bottom: rgba(220, 220, 220, 1) 1px solid;
+}
+
+.to-search {
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    border: none;
+    outline: none;
+}
+
+.from-to-stripe {
+    z-index: 20;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    width: 0.5rem;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.from-to-switch {
+    z-index: 30;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    border: rgba(255, 255, 255, 1) 1px solid;
+    transition: background-color 0.15s, border 0.15s;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.from-to-switch:hover {
+    background-color: rgba(240, 240, 240, 1);
+    border: rgba(240, 240, 240, 1) 1px solid;
+}
+
+.from-to-switch:active {
+    background-color: rgba(220, 220, 220, 1);
+    border: rgba(220, 220, 220, 1) 1px solid;
+}
+
+.from-to-switch-image {
+    height: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.from-to-switch-image-selected {
+    transform: rotate(180deg);
+}
+
+.search-button {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-radius: 1.5rem;
+    background-color: rgba(217, 4, 206, 1);
+    bottom: -1.5rem;
+    cursor: pointer;
+    transition: filter 0.15s ease-in-out;
+}
+
+.search-button:hover {
+    filter: brightness(95%);
+}
+
+.search-button:active {
+    filter: brightness(90%);
+}
+
+.search-button-image {
+    height: 1.25rem;
+}
+
+.search-button-text {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 1);
+}
+
+.select-dates {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    width: 26.25rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-radius: 0.25rem;
+    position: relative;
+    cursor: pointer;
+    transition: border 0.15s;
+}
+
+.date:hover {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.date-image {
+    margin-left: 1rem;
+    height: 1rem;
+}
+
+.date-text {
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.day-of-week {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.day {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    position: relative;
+}
+
+.up-button {
+    position: absolute;
+}
+
+.month {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.year {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.select-date {
+    z-index: 200;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    background-color: rgba(255, 255, 255, 1);
+    border: rgba(255, 255, 255, 1) 1px solid;
+    border-radius: 0.25rem;
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+.select-date-top {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    border-bottom: rgba(220, 220, 220, 1) 1px solid;
+}
+
+.date-bottom {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.date-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+}
+
+.date-option-text {
+    margin-left: 1rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.date-minus {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(240, 240, 240, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+}
+
+.date-minus:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.date-minus-image {
+    height: 1rem;
+}
+
+.date-plus-image {
+    height: 1rem;
+}
+
+.date-option-count {
+    margin-left: 1rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    width: 3rem;
+    text-align: center;
+}
+
+.date-plus {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(240, 240, 240, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+}
+
+.date-plus:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.date-plus-image {
+    height: 1rem;
+}
+
+.date-plus-image {
+    height: 1rem;
+}
+
+.date-return-1 {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    width: 13.125rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-right: rgba(220, 220, 220, 0) 1px solid;
+    border-radius: 0.25rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+    cursor: pointer;
+    transition: border 0.15s;
+}
+
+.date-return-1:hover {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.date-return-2 {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    width: 13.125rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-left: rgba(220, 220, 220, 0) 1px solid;
+    border-radius: 0.25rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    position: relative;
+    cursor: pointer;
+    transition: border 0.15s;
+}
+
+.date-return-2:hover {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.date-separator {
+    position: absolute;
+    height: 2rem;
+    left: 50%;
+    right: 50%;
+    width: 1px;
+    background-color: rgba(220, 220, 220, 1);
+    transition: border 0.15s;
+}
+
+.date-separator-hidden {
+    background-color: rgba(220, 220, 220, 0);
+}
+
+.image-section {
+    margin-top: 5rem;
+    width: 70rem;
+    position: relative;
+}
+
+.image-section-image {
+    width: 70rem;
+    height: 30rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-section-text {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    bottom: 50%;
+    font-family: Roboto;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+}
+
+.questions-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70rem;
+    margin-top: 3rem;
+}
+
+.questions-title {
+    width: 70rem;
+    font-family: Roboto;
+    font-size: 1.5rem;
+    color: rgba(50, 50, 50, 1);
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.question-splitter {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.question-split {
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 1rem);
+}
+
+.question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: rgba(220, 220, 220, 1) 1px solid;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.question-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 2rem;
+}
+
+.question-title {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    font-weight: 500;
+}
+
+.question-chevron {
+    margin-left: auto;
+    margin-right: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.question-chevron-expanded {
+    transform: rotate(180deg);
+}
+
+.question-answer {
+    width: 100%;
+    max-height: 0;
+    transition: all 0.15s;
+    cursor: default;
+    overflow-y: hidden;
+}
+
+.question-answer-expanded {
+    max-height: 15rem;
+}
+
+.question-answer-text {
+    font-family: Roboto;
+    font-size: 0.9rem;
+    color: rgba(50, 50, 50, 1);
+}
