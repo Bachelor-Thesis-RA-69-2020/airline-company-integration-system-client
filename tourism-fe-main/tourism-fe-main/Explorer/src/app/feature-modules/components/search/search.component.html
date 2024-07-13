@@ -1,1 +1,432 @@
-<p>search works!</p>
+<div class="results" *ngIf="display == 'DEPARTURE_FLIGHTS'">
+    <div class="one-way">
+        <div class="results-link" [routerLink]="['']">
+            <img class="results-link-chevron" src="../../../../assets/chevron-left-svgrepo-com.svg"/>
+            <div class="results-link-text">
+                Back to search
+            </div>
+        </div>
+        <div class="results-title">
+            Best departing flights &#183; {{from}} - {{to}} &#183; {{convertDateFormat(departure, 'EEE, dd.MM.yyyy.')}}
+        </div>
+        <div class="results-subtitle">
+            Ranked based on price and convenience. Listed prices includee the price of tickets for every passenger. Optional charges and bag fees may apply.
+        </div>
+        <div class="no-results" *ngIf="oneWayFlights.length == 0">
+            <div class="no-results-image-container">
+                <img class="no-results-image" src="../../../../assets/flight-takeoff-svgrepo-com.svg"/>
+            </div>
+            <div class="no-results-explanation">
+                No departure flights matching you search 
+            </div>
+            <div class="no-results-subexplanation">
+                Try changing your search to find flights
+            </div>
+            <div class="search-button" [routerLink]="['']">
+                <img class="search-button-image" src="../../../../assets/search-svgrepo-com.svg"/>
+                <div class="search-button-text">
+                    Search
+                </div>
+            </div>
+        </div>
+        <div class="result-list" *ngIf="oneWayFlights.length > 0">
+            <div class="flight" *ngFor="let flight of oneWayFlights; let i = index">
+                <div class="flight-top" [class.flight-top-expanded]="!isOneWayFlightExpanded(i)" (click)="toggleOneWayFlightExpansion(i)">
+                    <div class="airline-logo"  [class.airline-logo-1]="getAirlineCompanyName(flight[0]) == 'Eclipse Air'" [class.airline-logo-2]="getAirlineCompanyName(flight[0]) == 'Horizon Airways'" [class.airline-logo-3]="getAirlineCompanyName(flight[0]) == 'Zenith Airlines'" >
+                        <img class="airline-logo-image" src="../../../../assets/logo.png"/>
+                    </div>
+                    <div class="title-departure">
+                        Departure &#183; {{convertDateFormat(flight[0].departureTimestamp, 'EEE, dd.MM.yyyy.')}}
+                    </div>
+                    <div class="title-separator"></div>
+                    <div class="title-duration">
+                        <div class="title-duration-lenght">
+                            {{convertDurationFormat(flight)}}
+                        </div>
+                        <div class="title-duration-relation">
+                            {{from}} - {{to}}
+                        </div>
+                    </div>
+                    <div class="title-stops">
+                        <div class="title-stops-count">
+                            {{flight.length - 1}} stops
+                        </div>
+                        <div class="title-stops-length">
+                            {{calculateTotalStopTime(flight)}}
+                        </div>
+                    </div>
+                    <div class="select-button" (click)="selectOneWayFlight($event, flight)">
+                        <div class="select-button-text">
+                            Select flight
+                        </div>
+                    </div>
+                    <div class="title-price">
+                        {{currency}} {{calculatePrice(flight)}}
+                    </div>
+                    <img class="title-chevron" [class.title-chevron-expanded]="isOneWayFlightExpanded(i)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                </div>
+                <div class="flight-bottom" [class.flight-bottom-expanded]="isOneWayFlightExpanded(i)">
+                    <div class="flight-node" *ngFor="let flightNode of flight; let j = index;">
+                        <div class="flight-node-top">
+                            <div class="airline-logo"  [class.airline-logo-1]="getAirlineCompanyName(flightNode) == 'Eclipse Air'" [class.airline-logo-2]="getAirlineCompanyName(flightNode) == 'Horizon Airways'" [class.airline-logo-3]="getAirlineCompanyName(flightNode) == 'Zenith Airlines'" >
+                                <img class="airline-logo-image" src="../../../../assets/logo.png"/>
+                            </div>
+                            <div class="path">
+                                <img class="path-node" src="../../../../assets/circle-svgrepo-com.svg"/>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <img class="path-node" src="../../../../assets/circle-svgrepo-com.svg"/>
+                            </div>
+                            <div class="flight-information">
+                                <div class="flight-information-departure">
+                                    <div class="flight-information-departure-time">
+                                        {{formatTime(flightNode.departureTimestamp)}}
+                                    </div>
+                                    <div class="flight-information-departure-dot">
+                                        &#183;
+                                    </div>
+                                    <div class="flight-information-departure-airport">
+                                        {{flightNode.fromAirportName}} ({{flightNode.fromAirportIata}})
+                                    </div>
+                                </div>
+                                <div class="flight-information-duration">
+                                    Travel time: {{convertDurationFormatFlight(flightNode)}}
+                                </div>
+                                <div class="flight-information-arrival">
+                                    <div class="flight-information-arrival-time">
+                                        {{formatTime(flightNode.arrivalTimestamp)}}
+                                    </div>
+                                    <div class="flight-information-arrival-dot">
+                                        &#183;
+                                    </div>
+                                    <div class="flight-information-arrival-airport">
+                                        {{flightNode.toAirportName}} ({{flightNode.toAirportIata}})
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flight-tips">
+                                <div class="flight-tip">
+                                    <img class="flight-tip-image" src="../../../../assets/coin-2-svgrepo-com.svg"/>
+                                    <div class="flight-tip-text">
+                                        {{flightClass}}
+                                    </div>
+                                </div>
+                                <div class="flight-tip">
+                                    <img class="flight-tip-image" src="../../../../assets/luggage-svgrepo-com.svg"/>
+                                    <div class="flight-tip-text">
+                                        {{flightNode.baggageRules}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flight-node-bottom" [class.flight-node-bottom-last]="hasLayower(j, flight)">
+                            <div class="flight-node-airline-company">
+                                {{getAirlineCompanyName(flightNode)}} &#183; {{flightNode.flightNumber}}
+                            </div>
+                            <div class="fligh-node-layover" *ngIf="hasLayower(j, flight)">
+                                <img class="fligh-node-layover-clock" src="../../../../assets/clock-two-svgrepo-com.svg"/>
+                                <div class="fligh-node-layover-information">
+                                    {{calculateLayoverTime(j, flight)}} layover &#183; {{getLayoverAirport(j, flight)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="results" *ngIf="display == 'RETURN_FLIGHTS'">
+    <div class="one-way">
+        <div class="results-link" (click)="changeDisplay('DEPARTURE_FLIGHTS')">
+            <img class="results-link-chevron" src="../../../../assets/chevron-left-svgrepo-com.svg"/>
+            <div class="results-link-text">
+                Back to departing flights
+            </div>
+        </div>
+        <div class="results-title">
+            Best returning flights &#183; {{to}} - {{from}} &#183; {{convertDateFormat(return, 'EEE, dd.MM.yyyy.')}}
+        </div>
+        <div class="results-subtitle">
+            Ranked based on price and convenience. Listed prices includee the price of tickets for every passenger. Optional charges and bag fees may apply.
+        </div>
+        <div class="no-results" *ngIf="returnFlights.length == 0">
+            <div class="no-results-image-container">
+                <img class="no-results-image mirror-image" src="../../../../assets/flight-takeoff-svgrepo-com.svg"/>
+            </div>
+            <div class="no-results-explanation">
+                No returning flights matching you search 
+            </div>
+            <div class="no-results-subexplanation">
+                Try changing your search to find flights
+            </div>
+            <div class="search-button" [routerLink]="['']">
+                <img class="search-button-image" src="../../../../assets/search-svgrepo-com.svg"/>
+                <div class="search-button-text">
+                    Search
+                </div>
+            </div>
+        </div>
+        <div class="result-list" *ngIf="returnFlights.length > 0">
+            <div class="flight" *ngFor="let flight of returnFlights; let i = index">
+                <div class="flight-top" [class.flight-top-expanded]="!isReturnFlightExpanded(i)" (click)="toggleReturnFlightExpansion(i)">
+                    <div class="airline-logo"  [class.airline-logo-1]="getAirlineCompanyName(flight[0]) == 'Eclipse Air'" [class.airline-logo-2]="getAirlineCompanyName(flight[0]) == 'Horizon Airways'" [class.airline-logo-3]="getAirlineCompanyName(flight[0]) == 'Zenith Airlines'" >
+                        <img class="airline-logo-image" src="../../../../assets/logo.png"/>
+                    </div>
+                    <div class="title-departure">
+                        Return &#183; {{convertDateFormat(flight[0].departureTimestamp, 'EEE, dd.MM.yyyy.')}}
+                    </div>
+                    <div class="title-separator"></div>
+                    <div class="title-duration">
+                        <div class="title-duration-lenght">
+                            {{convertDurationFormat(flight)}}
+                        </div>
+                        <div class="title-duration-relation">
+                            {{to}} - {{from}}
+                        </div>
+                    </div>
+                    <div class="title-stops">
+                        <div class="title-stops-count">
+                            {{flight.length - 1}} stops
+                        </div>
+                        <div class="title-stops-length">
+                            {{calculateTotalStopTime(flight)}}
+                        </div>
+                    </div>
+                    <div class="select-button" (click)="selectReturnFlight($event, flight)">
+                        <div class="select-button-text">
+                            Select flight
+                        </div>
+                    </div>
+                    <div class="title-price">
+                        {{currency}} {{calculatePrice(flight)}}
+                    </div>
+                    <img class="title-chevron" [class.title-chevron-expanded]="isReturnFlightExpanded(i)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                </div>
+                <div class="flight-bottom" [class.flight-bottom-expanded]="isReturnFlightExpanded(i)">
+                    <div class="flight-node" *ngFor="let flightNode of flight; let j = index;">
+                        <div class="flight-node-top">
+                            <div class="airline-logo"  [class.airline-logo-1]="getAirlineCompanyName(flightNode) == 'Eclipse Air'" [class.airline-logo-2]="getAirlineCompanyName(flightNode) == 'Horizon Airways'" [class.airline-logo-3]="getAirlineCompanyName(flightNode) == 'Zenith Airlines'" >
+                                <img class="airline-logo-image" src="../../../../assets/logo.png"/>
+                            </div>
+                            <div class="path">
+                                <img class="path-node" src="../../../../assets/circle-svgrepo-com.svg"/>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <img class="path-node" src="../../../../assets/circle-svgrepo-com.svg"/>
+                            </div>
+                            <div class="flight-information">
+                                <div class="flight-information-departure">
+                                    <div class="flight-information-departure-time">
+                                        {{formatTime(flightNode.departureTimestamp)}}
+                                    </div>
+                                    <div class="flight-information-departure-dot">
+                                        &#183;
+                                    </div>
+                                    <div class="flight-information-departure-airport">
+                                        {{flightNode.fromAirportName}} ({{flightNode.fromAirportIata}})
+                                    </div>
+                                </div>
+                                <div class="flight-information-duration">
+                                    Travel time: {{convertDurationFormatFlight(flightNode)}}
+                                </div>
+                                <div class="flight-information-arrival">
+                                    <div class="flight-information-arrival-time">
+                                        {{formatTime(flightNode.arrivalTimestamp)}}
+                                    </div>
+                                    <div class="flight-information-arrival-dot">
+                                        &#183;
+                                    </div>
+                                    <div class="flight-information-arrival-airport">
+                                        {{flightNode.toAirportName}} ({{flightNode.toAirportIata}})
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flight-tips">
+                                <div class="flight-tip">
+                                    <img class="flight-tip-image" src="../../../../assets/coin-2-svgrepo-com.svg"/>
+                                    <div class="flight-tip-text">
+                                        {{flightClass}}
+                                    </div>
+                                </div>
+                                <div class="flight-tip">
+                                    <img class="flight-tip-image" src="../../../../assets/luggage-svgrepo-com.svg"/>
+                                    <div class="flight-tip-text">
+                                        {{flightNode.baggageRules}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flight-node-bottom" [class.flight-node-bottom-last]="hasLayower(j, flight)">
+                            <div class="flight-node-airline-company">
+                                {{getAirlineCompanyName(flightNode)}} &#183; {{flightNode.flightNumber}}
+                            </div>
+                            <div class="fligh-node-layover" *ngIf="hasLayower(j, flight)">
+                                <img class="fligh-node-layover-clock" src="../../../../assets/clock-two-svgrepo-com.svg"/>
+                                <div class="fligh-node-layover-information">
+                                    {{calculateLayoverTime(j, flight)}} layover &#183; {{getLayoverAirport(j, flight)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="results" *ngIf="display == 'BOOKING'">
+    <div class="one-way">
+        <div class="results-link" (click)="changeDisplay(way == 'One way' ? 'DEPARTURE_FLIGHTS' : 'RETURN_FLIGHTS')">
+            <img class="results-link-chevron" src="../../../../assets/chevron-left-svgrepo-com.svg"/>
+            <div class="results-link-text">
+                {{way == 'One way' ? 'Back to departing flights' : 'Back to returning flights'}}
+            </div>
+        </div>
+        <div class="results-title">
+            Selected flights
+        </div>
+        <div class="result-list">
+            <div class="flight" *ngFor="let flight of getSelectedFlights(); let i = index">
+                <div class="flight-top" [class.flight-top-expanded]="!isSelectedFlightExpanded(i)" (click)="toggleSelectedFlightExpansion(i)">
+                    <div class="airline-logo"  [class.airline-logo-1]="getAirlineCompanyName(flight[0]) == 'Eclipse Air'" [class.airline-logo-2]="getAirlineCompanyName(flight[0]) == 'Horizon Airways'" [class.airline-logo-3]="getAirlineCompanyName(flight[0]) == 'Zenith Airlines'" >
+                        <img class="airline-logo-image" src="../../../../assets/logo.png"/>
+                    </div>
+                    <div class="title-departure">
+                        {{i == 0 ? 'Departure' : 'Return'}} &#183; {{convertDateFormat(flight[0].departureTimestamp, 'EEE, dd.MM.yyyy.')}}
+                    </div>
+                    <div class="title-separator"></div>
+                    <div class="title-duration">
+                        <div class="title-duration-lenght">
+                            {{convertDurationFormat(flight)}}
+                        </div>
+                        <div class="title-duration-relation">
+                            {{i == 0 ? (from + ' - ' + to) : (to + ' - ' + from)}}
+                        </div>
+                    </div>
+                    <div class="title-stops">
+                        <div class="title-stops-count">
+                            {{flight.length - 1}} stops
+                        </div>
+                        <div class="title-stops-length">
+                            {{calculateTotalStopTime(flight)}}
+                        </div>
+                    </div>
+                    <div class="select-button invisible" (click)="selectReturnFlight($event, flight)">
+                        <div class="select-button-text">
+                            Select flight
+                        </div>
+                    </div>
+                    <div class="title-price">
+                        {{currency}} {{calculatePrice(flight)}}
+                    </div>
+                    <img class="title-chevron" [class.title-chevron-expanded]="isSelectedFlightExpanded(i)" src="../../../../assets/chevron-down-svgrepo-com.svg"/>
+                </div>
+                <div class="flight-bottom" [class.flight-bottom-expanded]="isSelectedFlightExpanded(i)">
+                    <div class="flight-node" *ngFor="let flightNode of flight; let j = index;">
+                        <div class="flight-node-top">
+                            <div class="airline-logo"  [class.airline-logo-1]="getAirlineCompanyName(flightNode) == 'Eclipse Air'" [class.airline-logo-2]="getAirlineCompanyName(flightNode) == 'Horizon Airways'" [class.airline-logo-3]="getAirlineCompanyName(flightNode) == 'Zenith Airlines'" >
+                                <img class="airline-logo-image" src="../../../../assets/logo.png"/>
+                            </div>
+                            <div class="path">
+                                <img class="path-node" src="../../../../assets/circle-svgrepo-com.svg"/>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <div class="path-dot"></div>
+                                <img class="path-node" src="../../../../assets/circle-svgrepo-com.svg"/>
+                            </div>
+                            <div class="flight-information">
+                                <div class="flight-information-departure">
+                                    <div class="flight-information-departure-time">
+                                        {{formatTime(flightNode.departureTimestamp)}}
+                                    </div>
+                                    <div class="flight-information-departure-dot">
+                                        &#183;
+                                    </div>
+                                    <div class="flight-information-departure-airport">
+                                        {{flightNode.fromAirportName}} ({{flightNode.fromAirportIata}})
+                                    </div>
+                                </div>
+                                <div class="flight-information-duration">
+                                    Travel time: {{convertDurationFormatFlight(flightNode)}}
+                                </div>
+                                <div class="flight-information-arrival">
+                                    <div class="flight-information-arrival-time">
+                                        {{formatTime(flightNode.arrivalTimestamp)}}
+                                    </div>
+                                    <div class="flight-information-arrival-dot">
+                                        &#183;
+                                    </div>
+                                    <div class="flight-information-arrival-airport">
+                                        {{flightNode.toAirportName}} ({{flightNode.toAirportIata}})
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flight-tips">
+                                <div class="flight-tip">
+                                    <img class="flight-tip-image" src="../../../../assets/coin-2-svgrepo-com.svg"/>
+                                    <div class="flight-tip-text">
+                                        {{flightClass}}
+                                    </div>
+                                </div>
+                                <div class="flight-tip">
+                                    <img class="flight-tip-image" src="../../../../assets/luggage-svgrepo-com.svg"/>
+                                    <div class="flight-tip-text">
+                                        {{flightNode.baggageRules}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flight-node-bottom" [class.flight-node-bottom-last]="hasLayower(j, flight)">
+                            <div class="flight-node-airline-company">
+                                {{getAirlineCompanyName(flightNode)}} &#183; {{flightNode.flightNumber}}
+                            </div>
+                            <div class="fligh-node-layover" *ngIf="hasLayower(j, flight)">
+                                <img class="fligh-node-layover-clock" src="../../../../assets/clock-two-svgrepo-com.svg"/>
+                                <div class="fligh-node-layover-information">
+                                    {{calculateLayoverTime(j, flight)}} layover &#183; {{getLayoverAirport(j, flight)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

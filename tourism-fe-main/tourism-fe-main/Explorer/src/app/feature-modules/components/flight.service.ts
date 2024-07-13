@@ -14,7 +14,7 @@ export class FlightService {
     private tokenStorage: TokenStorage,
     private router: Router) { }
 
-  search(from: string, to: string, departure: Date, returnDate: Date, way: string, stops: string, adultPassengerCount: number, childrenPassengerCount: number, flightClass: string, currency: string): Observable<any[]> {
+  search(from: string, to: string, departure: Date, returnDate: Date, way: string, stops: string, adultPassengerCount: number, childrenPassengerCount: number, flightClass: string, currency: string): Observable<any> {
     console.log(stops)
     const fromAirportIataQuery = `?fromAirportIATA=${from}`;
     const toAirportIataQuery = `&toAirportIATA=${to}`;
@@ -43,12 +43,12 @@ export class FlightService {
                   directQuery +
                   currencyQuery;
     const url = `${environment.apiHost}flights${query}`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any>(url);
   }
 
   getStartOfDay(date: Date): string {
     const startOfDay = new Date(date);
-    startOfDay.setUTCHours(0, 0, 0, 1);
+    startOfDay.setUTCHours(0, 0, 0, 0);
     return startOfDay.toISOString();
   }
   

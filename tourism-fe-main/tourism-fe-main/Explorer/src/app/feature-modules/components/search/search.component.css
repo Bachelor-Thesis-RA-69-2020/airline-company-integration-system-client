@@ -1,0 +1,474 @@
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.one-way {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70rem;
+}
+
+.results-link {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.results-link-chevron {
+    height: 1rem;
+}
+
+.results-link-text {
+    margin-left: 0.25rem;
+    color: rgba(217, 4, 206, 1);
+    font-family: Roboto;
+    font-size: 1rem;
+}
+
+.results-title {
+    margin-top: 1rem;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 1.5rem;
+    color: rgba(50, 50, 50, 1);
+    font-weight: 500;
+}
+
+.results-subtitle {
+    margin-top: 0.5rem;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(220, 220, 220, 1);
+    font-weight: 500;
+}
+
+.result-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    padding-top: 1rem;
+    min-height: 100vh;
+    padding-bottom: 1rem;
+}
+
+.no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.no-results-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.no-results-image {
+    height: 15rem;
+    opacity: 0.15;
+}
+
+.mirror-image {
+    transform: scaleX(-1);
+}
+
+.no-results-explanation {
+    width: 100%;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    margin-bottom: 0.25rem;
+}
+
+.no-results-subexplanation {
+    width: 100%;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 0.75rem;
+    color: rgba(220, 220, 220, 1);
+}
+
+.flight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-radius: 0.5rem;
+}
+
+.flight-top {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    border-bottom: rgba(220, 220, 220, 1) 1px solid;
+    cursor: pointer;
+}
+
+.flight-top-expanded {
+    border-bottom: none;
+}
+
+.airline-logo {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 1.5rem;
+}
+
+.airline-logo-1 {
+    background-color: rgba(34, 186, 168, 1);
+    border: rgba(34, 186, 168, 1) 1px solid;
+}
+
+.airline-logo-2 {
+    background-color: rgba(161, 10, 143, 1);
+    border: rgba(161, 10, 143, 1) 1px solid;
+}
+
+.airline-logo-3 {
+    background-color: rgba(50, 50, 50, 1);
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.airline-logo-image {
+    height: 2rem;
+}
+
+.title-departure {
+    margin-left: 1rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    width: 20rem;
+}
+
+.title-separator {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-duration {
+    display: flex;
+    flex-direction: column;
+    width: 6rem;
+}
+
+.title-duration-length {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.title-duration-relation {
+    font-family: Roboto;
+    font-size: 0.75rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.title-stops {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 6rem;
+}
+
+.title-stops-count {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.title-stops-length {
+    font-family: Roboto;
+    font-size: 0.75rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.title-price {
+    margin-left: 1rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    width: 8rem;
+    text-align: right;
+}
+
+.select-button {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    padding-inline: 1em;
+    padding-block: 0.125rem;
+    border-radius: 1.5rem;
+    background-color: rgba(255, 255, 255, 1);
+    border: rgba(217, 4, 206, 1) 1px solid;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.select-button:hover {
+    background-color: rgba(217, 4, 206, 0.05);
+}
+
+.select-button:active {
+    background-color: rgba(217, 4, 206, 0.1);
+}
+
+.select-button-text {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(217, 4, 206, 1);
+}
+
+.title-chevron {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.title-chevron-expanded {
+    transform: rotate(180deg);
+}
+
+.flight-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-height: 0;
+    transition: all 0.15s;
+    overflow-y: hidden;
+}
+
+.flight-bottom-expanded {
+    max-height: 100rem;
+}
+
+.flight-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.flight-node-top {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 8rem;
+}
+
+.path {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 5rem;
+    margin-left: 1rem;
+}
+
+.path-node {
+    width: 1rem;
+    height: 1rem;
+}
+
+.path-dot {
+    margin-block: 0.125rem;
+    height: 0.25rem;
+    width: 0.25rem;
+    background-color: rgba(50, 50, 50, 1);
+    background: rgba(50, 50, 50, 1) 1px soild;
+    border-radius: 0.125rem;
+}
+
+.flight-information {
+    margin-left: 0.5rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flight-information-departure {
+    display: flex;
+    align-items: center;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-information-departure-time {
+    margin-right: 0.25rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-information-departure-time {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-information-departure-airport {
+    margin-left: 0.25rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-information-arrival {
+    display: flex;
+    align-items: center;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-information-arrival-time {
+    margin-right: 0.25rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-information-arrival-time {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-information-arrival-airport {
+    margin-left: 0.25rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-information-duration {
+    font-family: Roboto;
+    font-size: 0.75rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-tips {
+    display: flex;
+    flex-direction: column;
+    height: 5rem;
+    margin-left: auto;
+    padding-right: 1rem;
+}
+
+.flight-tip {
+    display: flex;
+    align-items: center;
+}
+
+.flight-tip-image {
+    height: 0.75rem;
+}
+
+.flight-tip-text {
+    margin-left: 0.25rem;
+    font-family: Roboto;
+    font-size: 0.75rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.flight-node-bottom {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 6.5rem);
+    margin-left: 6.5rem;
+}
+
+.flight-node-bottom-last {
+    border-bottom: rgba(220, 220, 220, 1) 1px solid;
+}
+
+.flight-node-airline-company {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(220, 220, 220, 1);
+    padding-bottom: 1rem;
+}
+
+.fligh-node-layover {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    border-top: rgba(220, 220, 220, 1) 1px solid;
+}
+
+.fligh-node-layover-clock {
+    height: 1rem;
+}
+
+
+.fligh-node-layover-information {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.search-button {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    padding-inline: 2rem;
+    padding-block: 0.125rem;
+    border-radius: 1.125rem;
+    background-color: rgba(217, 4, 206, 1);
+    cursor: pointer;
+    transition: filter 0.15s ease-in-out;
+}
+
+.search-button:hover {
+    filter: brightness(95%);
+}
+
+.search-button:active {
+    filter: brightness(90%);
+}
+
+.search-button-image {
+    height: 1.25rem;
+}
+
+.search-button-text {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 1);
+}
+
+.invisible {
+    visibility: hidden;
+}
