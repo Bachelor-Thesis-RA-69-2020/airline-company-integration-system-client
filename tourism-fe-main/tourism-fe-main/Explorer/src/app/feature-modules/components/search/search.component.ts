@@ -150,6 +150,10 @@ export class SearchComponent {
     return parseFloat(totalPrice.toFixed(2));
   }
 
+  getFlooredPrice(price: number): number {
+    return parseFloat(price.toFixed(2));
+  }
+
   getAirlineCompanyName(flight: any): string {
     const serialNumberPrefix = flight.flightNumber.substring(0, 3);
 
