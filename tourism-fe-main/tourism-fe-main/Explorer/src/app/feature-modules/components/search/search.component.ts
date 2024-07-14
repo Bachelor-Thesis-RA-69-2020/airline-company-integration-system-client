@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FlightService } from '../flight.service';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { NotifierService } from 'angular-notifier';
+import { BookingService } from '../booking.service';
+import { BookingComponent } from '../booking/booking.component';
 
 @Component({
   selector: 'xp-search',
@@ -28,13 +32,21 @@ export class SearchComponent {
   expandedReturnFlights: number[] =[];
   expandedSelectedFlights: number[] =[];
 
+  passengers: any[] = [];
+
+  expandedDatePickers: number[] =[];
+
+  email: string = '';
 
   display: string = 'DEPARTURE_FLIGHTS';
 
   constructor(
     private flightService: FlightService,
     private route: ActivatedRoute,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    public dialog: MatDialog,
+    private notifier: NotifierService,
+    private bookingService: BookingService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +63,22 @@ export class SearchComponent {
 
       if (params['return']) {
         this.return = params['return'];
+      }
+
+      for(let i = 0; i < this.getPassengerCount(true) + this.getPassengerCount(false);  i++) {
+        this.passengers.push({
+          firstName: '',
+          lastName: '',
+          passportNumber: ''
+        });
+
+        let date = new Date();
+        if(i < this.adultPassengerCount) {
+          date.setFullYear(date.getFullYear() - 12);
+          this.passengers[i].birthDate = date;
+        } else {
+          this.passengers[i].birthDate = date;
+        }
       }
     });
 
@@ -124,8 +152,6 @@ export class SearchComponent {
 
   getAirlineCompanyName(flight: any): string {
     const serialNumberPrefix = flight.flightNumber.substring(0, 3);
-
-    console.log(serialNumberPrefix)
 
     if(serialNumberPrefix == 'AL1') {
       return 'Eclipse Air';
@@ -247,4 +273,178 @@ export class SearchComponent {
     }
     return [this.selectedFlights[0], this.selectedFlights[1]];
   }
+
+  getPassengerCount(adult: boolean): number {
+    if(adult) {
+      return Number(this.adultPassengerCount);
+    }
+
+    return Number(this.childrenPassengerCount);
+  }
+
+  getAllPassengerCount() {
+    return Number(this.adultPassengerCount) + Number(this.childrenPassengerCount);
+  }
+
+  openDatePickerExpansion(passengerIndex: number) {
+    const index = this.expandedDatePickers.indexOf(passengerIndex);
+    if (index !== -1) {
+      return;
+    } else {
+    const index = this.expandedDatePickers.indexOf(passengerIndex);
+      this.expandedDatePickers.push(passengerIndex);
+    }
+  }
+
+  closeDatePickerExpansion(passengerIndex: number) {
+    const index = this.expandedDatePickers.indexOf(passengerIndex);
+    if (index !== -1) {
+      this.expandedDatePickers.splice(index, 1);
+    } else {
+      return;
+    }
+  }
+
+  isDatePickerExpanded(passengerIndex: number): boolean {
+    const isExpanded = this.expandedDatePickers.includes(passengerIndex);
+    return isExpanded;
+  }
+
+  addTimeToPassengerBirthDate(index: number, type: 'day' | 'month' | 'year'): void {
+    const date = this.passengers[index].birthDate;
+    const newDate = new Date(date);
+
+    switch (type) {
+        case 'day':
+            newDate.setDate(newDate.getDate() + 1);
+            break;
+        case 'month':
+            newDate.setMonth(newDate.getMonth() + 1);
+            break;
+        case 'year':
+            newDate.setFullYear(newDate.getFullYear() + 1);
+            break;
+        default:
+            throw new Error('Invalid type. Use "day", "month", or "year".');
+    }
+
+    const today = new Date();
+    const twelveYearsAgo = new Date(today.getFullYear() - 12, today.getMonth(), today.getDate(), 23, 59, 59, 999);
+    const isChild = newDate > twelveYearsAgo;
+    const isAdult = newDate <= twelveYearsAgo;
+
+    if (!this.isPassengerAdult(index) && isChild && newDate <= today) {
+        this.passengers[index].birthDate = newDate;
+    } else if (this.isPassengerAdult(index) && isAdult && newDate <= today) {
+        this.passengers[index].birthDate = newDate;
+    }
+}
+
+removeTimeFromPassengerBirthDate(index: number, type: 'day' | 'month' | 'year'): void {
+    const date = this.passengers[index].birthDate;
+    const newDate = new Date(date);
+
+    switch (type) {
+        case 'day':
+            newDate.setDate(newDate.getDate() - 1);
+            break;
+        case 'month':
+            newDate.setMonth(newDate.getMonth() - 1);
+            break;
+        case 'year':
+            newDate.setFullYear(newDate.getFullYear() - 1);
+            break;
+        default:
+            throw new Error('Invalid type. Use "day", "month", or "year".');
+    }
+
+    const today = new Date();
+    const twelveYearsAgo = new Date(today.getFullYear() - 12, today.getMonth(), today.getDate(), 23, 59, 59, 999);
+    const oneHundredFiftyYearsAgo = new Date(today.getFullYear() - 150, today.getMonth(), today.getDate(), 0, 0, 0, 0);
+    const isChild = newDate >= twelveYearsAgo;
+    const isAdult = newDate <= twelveYearsAgo && newDate >= oneHundredFiftyYearsAgo;
+
+    if (!this.isPassengerAdult(index) && isChild && newDate <= today) {
+        this.passengers[index].birthDate = newDate;
+    } else if (this.isPassengerAdult(index) && isAdult && newDate <= today) {
+        this.passengers[index].birthDate = newDate;
+    }
+}
+
+  isPassengerAdult(index: number): boolean {
+    const isPassengerAdult = index < this.getPassengerCount(true);
+    return isPassengerAdult;
+  }
+
+  getFlightCount(): number {
+    let flightCount = this.selectedFlights[0].length;
+
+    if(this.way == 'Return') {
+      flightCount = this.selectedFlights[0].length;
+    }
+
+    return flightCount;
+  }
+
+  openBookingSuccessfullDialog(): void {
+    const dialogRef = this.dialog.open(BookingComponent, {});
+  }
+
+  bookFlights() {
+    if(this.validateBooking()) {
+      let flightSerialNumbers: string[] = [];
+
+      this.selectedFlights[0].forEach((flight: any) => {
+        flightSerialNumbers.push(flight.flightNumber);
+      });
+
+      if(this.way == 'Return') {
+        this.selectedFlights[1].forEach((flight: any) => {
+          flightSerialNumbers.push(flight.flightNumber);
+        });
+      }
+
+      this.bookingService.search(flightSerialNumbers, this.passengers, this.email, this.flightClass).subscribe({
+        next: (result: any) => {
+          this.notifier.notify('success', `Booking successful.`);
+          this.openBookingSuccessfullDialog();
+        },
+        error: errData => {
+            console.log(errData);
+        },
+      });
+    }
+  }
+
+  validateBooking(): boolean {
+    let isValid = true;
+
+    this.passengers.forEach((passenger, index) => {
+        if (!passenger.firstName) {
+            console.error(`Passenger ${index + 1}: First name is empty`);
+            this.notifier.notify('error', `Passenger ${index + 1} - First name can't be empty.`);
+            isValid = false;
+        }
+        if (!passenger.lastName) {
+          this.notifier.notify('error', `Passenger ${index + 1} - Last name can't be empty.`);
+            isValid = false;
+        }
+        if (!passenger.passportNumber) {
+          this.notifier.notify('error', `Passenger ${index + 1} - Passport number can't be empty.`);
+            isValid = false;
+        }
+    });
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!this.email) {
+      this.notifier.notify('error', `Email - Email can't be empty.`);
+        isValid = false;
+    } else if (!emailRegex.test(this.email)) {
+      this.notifier.notify('error', `Email - Invalid email format.`);
+        isValid = false;
+    }
+
+    return isValid;
+}
+
 }

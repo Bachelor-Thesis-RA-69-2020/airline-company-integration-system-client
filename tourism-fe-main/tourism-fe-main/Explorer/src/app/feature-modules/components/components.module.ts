@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SearchComponent } from './search/search.component';
 import { FooterComponent } from './footer/footer.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BookingComponent } from './booking/booking.component';
 
 
 
@@ -22,7 +24,8 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     ClickOutsideDirective,
     SearchComponent,
-    FooterComponent
+    FooterComponent,
+    BookingComponent
   ],
   imports: [
     CommonModule,
@@ -35,8 +38,8 @@ import { FooterComponent } from './footer/footer.component';
     MatNativeDateModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
-
+    MatInputModule,
+    MatDialogModule
   ],
   exports: [
     NavbarComponent,

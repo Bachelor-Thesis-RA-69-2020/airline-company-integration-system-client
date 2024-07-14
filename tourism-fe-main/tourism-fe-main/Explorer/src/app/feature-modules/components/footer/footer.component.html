@@ -1,1 +1,36 @@
-<p>footer works!</p>
+<div class="footer">
+    <div class="footer-content">
+        <div class="information">
+            <div class="copyright">
+                &copy;PathfindAir &#183; All rights reserved. PathfindAir and the PathfindAir logo are trademarks or registered trademarks of PathfindAir.
+            </div>
+            <div class="linked-in" (click)="openLinkedIn()">
+                <img class="linked-in-logo" src="../../../../assets/linkedin-161-svgrepo-com (1).svg"/>
+            </div>
+            <div class="github" (click)="openGitHub()">
+                <img class="github-logo" src="../../../../assets/github-svgrepo-com (1).svg"/>
+            </div>
+        </div>
+        <div class="logos">
+            <div class="logo" [routerLink]="['']">
+                <img  class="logo-image" src="../../../../assets/feathered-wing-svgrepo-com.svg"/>
+                <div class="logo-text"><span class="logo-text-color-1">Pathfind</span><span class="logo-text-color-2">Air</span></div>
+            </div>
+            
+            <div class="airline-logo airline-logo-3">
+                <img  class="airline-logo-image" src="../../../../assets/logo.png"/>
+                <div class="airline-logo-text">Zenith Airlines</div>
+            </div>
+
+            <div class="airline-logo airline-logo-2">
+                <img  class="airline-logo-image" src="../../../../assets/logo.png"/>
+                <div class="airline-logo-text">Horizon Airways</div>
+            </div>
+
+            <div class="airline-logo airline-logo-1">
+                <img  class="airline-logo-image" src="../../../../assets/logo.png"/>
+                <div class="airline-logo-text">Eclipse Air</div>
+            </div>
+        </div>
+    </div>
+</div>

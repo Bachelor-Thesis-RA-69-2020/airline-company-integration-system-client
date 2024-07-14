@@ -427,6 +427,123 @@
                     </div>
                 </div>
             </div>
+            <div class="results-title">
+                Passengers
+            </div>
+            <div class="passengers">
+                <div class="passenger-form" *ngFor="let passenger of passengers; let i = index">
+                    <div class="passenger-title">
+                        <img class="passenger-title-image" src="../../../../assets/person-male-svgrepo-com.svg" *ngIf="i < getPassengerCount(true)"/>
+                        <img class="passenger-title-image" src="../../../../assets/kid-svgrepo-com.svg" *ngIf="i >= getPassengerCount(true)"/>
+                        <div class="passenger-title-text">{{i + 1}}. Passenger ({{i < getPassengerCount(true) ? 'adult' : 'child'}})</div>
+                    </div>
+                    <div class="passenger-inputs">
+                        <div class="passenger-name-input">
+                            <img class="passenger-name-input-image" src="../../../../assets/id-card-svgrepo-com.svg"/>
+                            <div class="passenger-name">
+                                <input class="passenger-first-name" type="text" placeholder="First name" [(ngModel)]="passenger.firstName"/>
+                                <input class="passenger-last-name" type="text" placeholder="Last name" [(ngModel)]="passenger.lastName"/>
+                                <div class="name-separator"></div>
+                            </div>
+                        </div>
+                        <div class="passenger-passport-input">
+                            <img class="passenger-passport-input-image" src="../../../../assets/passport-svgrepo-com.svg"/>
+                            <div class="passenger-passport">
+                                <input class="passenger-passport-number" type="text" placeholder="Passport number" [(ngModel)]="passenger.passportNumber"/>
+                            </div>
+                        </div>
+                        <div class="select-dates">
+                            <div class="date" (click)="openDatePickerExpansion(i)" appClickOutside (clickOutside)="closeDatePickerExpansion(i)">
+                                <img class="date-image" src="../../../../assets/calendar-svgrepo-com.svg"/>
+                                <div class="date-text">
+                                    <div class="day-of-week">
+                                        Birthdate:
+                                    </div>
+                                    <div class="day">
+                                        &nbsp;{{convertDateFormat(passenger.birthDate, 'dd.')}}
+                                    </div>
+                                    <div class="month">
+                                        {{convertDateFormat(passenger.birthDate, 'MM.')}}
+                                    </div>
+                                    <div class="year">
+                                        {{convertDateFormat(passenger.birthDate, 'yyyy.')}}
+                                    </div>
+                                </div>
+                                <div class="select-date" *ngIf="isDatePickerExpanded(i)">
+                                    <div class="select-date-top">
+                                        <img class="date-image" src="../../../../assets/calendar-svgrepo-com.svg"/>
+                                        <div class="date-text">
+                                            Birthdate
+                                        </div>
+                                    </div>
+                                    <div class="date-bottom">
+                                        <div class="date-option">
+                                            <div class="date-option-text">Day</div>
+                                            <div class="date-minus" (click)="removeTimeFromPassengerBirthDate(i, 'day')">
+                                                <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                            </div>
+                                            <div class="date-option-count">
+                                                {{convertDateFormat(passenger.birthDate, 'dd.')}}
+                                            </div>
+                                            <div class="date-plus" (click)="addTimeToPassengerBirthDate(i, 'day')">
+                                                <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                            </div>
+                                        </div>
+                                        <div class="date-option">
+                                            <div class="date-option-text">Month</div>
+                                            <div class="date-minus" (click)="removeTimeFromPassengerBirthDate(i, 'month')">
+                                                <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                            </div>
+                                            <div class="date-option-count">
+                                                {{convertDateFormat(passenger.birthDate, 'MM.')}}
+                                            </div>
+                                            <div class="date-plus" (click)="addTimeToPassengerBirthDate(i, 'month')">
+                                                <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                            </div>
+                                        </div>
+                                        <div class="date-option">
+                                            <div class="date-option-text">Year</div>
+                                            <div class="date-minus" (click)="removeTimeFromPassengerBirthDate(i, 'year')">
+                                                <img class="date-minus-image" src="../../../../assets/math-minus-svgrepo-com.svg"/>
+                                            </div>
+                                            <div class="date-option-count">
+                                                {{convertDateFormat(passenger.birthDate, 'yyyy.')}}
+                                            </div>
+                                            <div class="date-plus" (click)="addTimeToPassengerBirthDate(i, 'year')">
+                                                <img class="date-plus-image"src="../../../../assets/math-plus-svgrepo-com.svg"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="email-form">
+                    <div class="email-title">
+                        <img class="email-title-image" src="../../../../assets/contact-svgrepo-com.svg"/>
+                        <div class="email-title-text">Contact</div>
+                    </div>
+                    <div class="email-inputs">
+                        <div class="email-name-input">
+                            <img class="email-name-input-image" src="../../../../assets/email-1-svgrepo-com.svg"/>
+                            <div class="email-name">
+                                <input class="email-first-name" type="text" placeholder="Email" [(ngModel)]="email"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="booking">
+                    <div class="book-button" (click)="bookFlights()">
+                        <img class="book-button-image" src="../../../../assets/airplane-svgrepo-com (3).svg"/>
+                        <div class="book-button-text">
+                            Book flight{{getFlightCount() > 1 ? 's' : ''}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

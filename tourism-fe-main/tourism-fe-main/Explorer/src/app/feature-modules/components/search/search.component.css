@@ -56,8 +56,7 @@
     width: 100%;
     gap: 1rem;
     padding-top: 1rem;
-    min-height: 100vh;
-    padding-bottom: 1rem;
+    padding-bottom: 3rem;
 }
 
 .no-results {
@@ -471,4 +470,474 @@
 
 .invisible {
     visibility: hidden;
+}
+
+.passengers {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.passenger-form {
+    width: 100%;
+    display: flex;
+    padding-bottom: 1rem;
+    flex-direction: column;
+    border-bottom: rgba(220, 220, 220, 1) 1px solid;
+}
+
+.passenger-title {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.passenger-title-image {
+    height: 1rem;
+    margin-left: 1rem;
+}
+
+.passenger-title-text {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.passenger-inputs {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.passenger-name-input {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-radius: 0.25rem;
+    position: relative;
+    transition: border 0.15s;
+    width: calc(50% - 1rem);
+}
+
+.passenger-name-input:hover {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.passenger-name-input:hover .from-circle {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.passenger-name-input-image {
+    margin-left: 1rem;
+    width: 1.5rem;
+}
+
+.passenger-name {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    position: relative;
+    height: 100%;
+}
+
+.passenger-first-name {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 50%;
+    border: none;
+    outline: none;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    padding-right: 1rem;
+}
+
+.passenger-last-name {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    border: none;
+    outline: none;
+    padding-left: 1rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.name-separator {
+    position: absolute;
+    height: 2rem;
+    left: 50%;
+    right: 50%;
+    width: 1px;
+    background-color: rgba(220, 220, 220, 1);
+    transition: border 0.15s;
+}
+
+.passenger-passport-input {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-radius: 0.25rem;
+    position: relative;
+    transition: border 0.15s;
+    width: calc(25% - 0.5rem);
+}
+
+.passenger-passport-input:hover {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.passenger-passport-input:hover .from-circle {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.passenger-passport-input-image {
+    margin-left: 1rem;
+    width: 1.5rem;
+}
+
+.passenger-passport {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    position: relative;
+    height: 100%;
+}
+
+.passenger-passport-number {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
+    outline: none;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    padding-right: 1rem;
+}
+
+.select-dates {
+    margin-left: 1rem;
+    display: flex;
+    width: calc(25% - 0.5rem);
+    align-items: center;
+    position: relative;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    width: 100%;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-radius: 0.25rem;
+    position: relative;
+    cursor: pointer;
+    transition: border 0.15s;
+}
+
+.date:hover {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.date-image {
+    margin-left: 1rem;
+    width: 1.5rem;
+}
+
+.date-text {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.day-of-week {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.day {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    position: relative;
+}
+
+.up-button {
+    position: absolute;
+}
+
+.month {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.year {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.select-date {
+    z-index: 200;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    background-color: rgba(255, 255, 255, 1);
+    border: rgba(255, 255, 255, 1) 1px solid;
+    border-radius: 0.25rem;
+    box-shadow: 5px 0px 10px -2px rgba(0, 0, 0, 0.2),
+                0px 5px 10px -2px rgba(0, 0, 0, 0.2),
+                -5px 0px 10px -2px rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+.select-date-top {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    border-bottom: rgba(220, 220, 220, 1) 1px solid;
+}
+
+.date-bottom {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.date-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 0.15s;
+}
+
+.date-option-text {
+    margin-left: 1rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.date-minus {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(240, 240, 240, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+}
+
+.date-minus:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.date-minus-image {
+    height: 1rem;
+}
+
+.date-plus-image {
+    height: 1rem;
+}
+
+.date-option-count {
+    margin-left: 1rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    width: 3rem;
+    text-align: center;
+}
+
+.date-plus {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(240, 240, 240, 1);
+    transition: background-color 0.15s;
+    cursor: pointer;
+}
+
+.date-plus:hover {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.date-plus-image {
+    height: 1rem;
+}
+
+.date-plus-image {
+    height: 1rem;
+}
+
+.booking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3rem;
+    position: relative;
+}
+
+.book-button {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-radius: 1.5rem;
+    background-color: rgba(217, 4, 206, 1);
+    bottom: -1.5rem;
+    cursor: pointer;
+    transition: filter 0.15s ease-in-out;
+}
+
+.book-button:hover {
+    filter: brightness(95%);
+}
+
+.book-button:active {
+    filter: brightness(90%);
+}
+
+.book-button-image {
+    height: 2rem;
+}
+
+.book-button-text {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 1);
+}
+
+
+
+
+
+
+
+
+
+.email-form {
+    width: 100%;
+    display: flex;
+    padding-bottom: 1rem;
+    flex-direction: column;
+    border-bottom: rgba(220, 220, 220, 1) 1px solid;
+}
+
+.email-title {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.email-title-image {
+    height: 1rem;
+    margin-left: 1rem;
+}
+
+.email-title-text {
+    margin-left: 0.5rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+}
+
+.email-inputs {
+    display: flex;
+    align-items: center;
+    width: calc(100% - rem);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.email-name-input {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    border: rgba(220, 220, 220, 1) 1px solid;
+    border-radius: 0.25rem;
+    position: relative;
+    cursor: pointer;
+    transition: border 0.15s;
+    width: 100%;
+}
+
+.email-name-input:hover {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.email-name-input:hover .from-circle {
+    border: rgba(50, 50, 50, 1) 1px solid;
+}
+
+.email-name-input-image {
+    margin-left: 1rem;
+    width: 1.5rem;
+}
+
+.email-name {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    position: relative;
+    height: 100%;
+}
+
+.email-first-name {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
+    outline: none;
+    font-family: Roboto;
+    font-size: 1rem;
+    color: rgba(50, 50, 50, 1);
+    padding-right: 1rem;
 }
