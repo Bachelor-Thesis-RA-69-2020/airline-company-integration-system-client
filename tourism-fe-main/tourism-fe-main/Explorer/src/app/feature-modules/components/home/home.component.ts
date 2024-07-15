@@ -448,12 +448,17 @@ export class HomeComponent {
     let isValid = true;
 
     if(this.fromDisplay == 'Where from?') {
-      this.notifier.notify('error', 'You must select a departure airport.')
+      this.notifier.notify('error', 'You must select a departure airport.');
       isValid = false;
     }
 
     if(this.toDisplay == 'Where to?') {
-      this.notifier.notify('error', 'You must select a destination airport.')
+      this.notifier.notify('error', 'You must select a destination airport.');
+      isValid = false;
+    }
+
+    if(this.fromDisplay != 'Where from?' && this.toDisplay != 'Where to?' && this.fromDisplay == this.toDisplay) {
+      this.notifier.notify('error', 'Departure airport and destination airport can\'t be the same airport.');
       isValid = false;
     }
 
